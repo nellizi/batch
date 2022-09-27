@@ -5,7 +5,6 @@ import com.ll.exam.app_2022_09_22.app.product.entity.ProductOption;
 import com.ll.exam.app_2022_09_22.app.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.List;
 
@@ -15,19 +14,18 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    public void create(String name, int price, String makerShopName, List<ProductOption> options) {
+    public Product create(String name, int price, String makerShopName, List<ProductOption> options) {
         Product product = Product.builder()
                 .name(name)
                 .price(price)
                 .makerShopName(makerShopName)
                 .build();
 
-        productRepository.save(product);
-
         for ( ProductOption option : options ) {
             product.addOption(option);
         }
 
         productRepository.save(product);
+        return product;
     }
 }
