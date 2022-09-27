@@ -2,9 +2,11 @@ spring:
   output:
     ansi:
       enabled: always
+  profiles:
+    active: dev
   batch:
     job:
-      names: ${job.name:withParamJob}
+      names: ${job.name:NONE}
     jdbc:
       initialize-schema: ALWAYS
   datasource:
@@ -14,6 +16,8 @@ spring:
     password: 220808
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create
 logging:
   level:
     com.ll.exam.app_2022_09_22: debug
